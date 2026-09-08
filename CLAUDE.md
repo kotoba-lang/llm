@@ -91,11 +91,16 @@ credits service 不達・unknown method・その他エラーはスルー (credit
 **account-level Worker (`etzhayyim-llm`)** — dispatcher `SERVICE_BINDING_DOMAINS` 経由。
 
 ```bash
-cd 60-apps/etzhayyim-project-llm/wasm/etzhayyim-wasm-llm-llm8cf4ai
+cd appview/etzhayyim-wasm-llm-llm8cf4ai
 # account-level Worker deploy (llm.etzhayyim.com route)
 mkdir -p build && npx esbuild src/app.ts --bundle --outfile=build/worker.mjs --format=esm --platform=browser --target=es2022 --external:cloudflare:workers
 pnpm wrangler deploy
 
-# App Worker deploy (llm8cf4ai.etzhayyim.com)
-etzhayyim deploy --no-svelte --smoke-url https://llm8cf4ai.etzhayyim.com/health
+# App Worker deploy (llm8cf4ai.etzhayyim.com) — frontend migrated from
+# SvelteKit to ClojureScript (2026-09-08, see appview/etzhayyim-wasm-llm-llm8cf4ai/cljs/
+# and that dir's wrangler.jsonc header comment). The `--no-svelte` flag
+# below is stale now that svelte/ is gone; this line and whatever
+# `etzhayyim deploy` actually does with it are UNVERIFIED by this
+# migration (the tool itself is not in this repo checkout).
+etzhayyim deploy --smoke-url https://llm8cf4ai.etzhayyim.com/health
 ```

@@ -1,3 +1,19 @@
+// SVELTEKIT-BACKEND-PRESERVED: moved out of svelte/ during the cljs migration; not wired.
+//
+// Moved verbatim from
+// `svelte/src/routes/xrpc/[...path]/+server.ts`, the SvelteKit server-route
+// file that was this repo's XRPC-to-MCP-router proxy (POST /xrpc/*
+// forwards to AGENTGATEWAY_MCP_ROUTER_URL / MCP_ROUTER_URL as a JSON-RPC 2.0
+// tools/call envelope). Only this header comment was added; the handler
+// logic below is byte-for-byte unchanged.
+//
+// This migration's wrangler.jsonc drops `main` entirely (see that file's
+// header comment): with `main` gone, this handler is not deployed from this
+// config, and it still imports from '@sveltejs/kit' and './$types' — neither
+// of which resolves now that the SvelteKit toolchain (`svelte/`) has been
+// removed, so it will NOT run as-is. Whether/how to revive it (e.g. as a
+// plain Cloudflare Worker fetch handler) is an open product decision, not
+// made by this migration.
 import { json, type RequestEvent } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
