@@ -63,7 +63,7 @@
    :app/routes []
    :app/vars []
    :app/xrpc? false
-   :app/relative-path "appview/etzhayyim-wasm-llm-llm8cf4ai/cljs/src/llm/app.cljs"})
+   :app/relative-path "appview/etzhayyim-wasm-llm-llm8cf4ai/cljs/src/llm/app.cljk"})
 
 (rf/reg-event-db
  :initialize-db
